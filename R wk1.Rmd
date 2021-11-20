@@ -1,0 +1,68 @@
+---
+title: "DETERMINING AD CICKABILITY USING R"
+output: html_document
+---
+
+## DEFINING THE QUESTION
+
+A Kenyan entrepreneur has created an online cryptography course and would want to advertise it on her blog. She currently targets audiences originating from various countries. In the past, she ran ads to advertise a related course on the same blog and collected data in the process. She would now like to employ your services as a Data Science Consultant to help her identify which individuals are most likely to click on her ads.
+
+## THE METRICS FOR SUCCESS
+
+Identify which individuals are most likely to click on the client's ads.
+
+## THE CONTEXT
+
+The client is A Kenyan entrepreneur that has created an online cryptography course and would want to advertise it on her blog. She currently targets audiences originating from various countries. In the past, she ran ads to advertise a related course on the same blog and collected data in the process.
+
+## APPROPRIATENESS OF THE AVAILABLE DATA
+
+The data set provided shows the daily time one spent on site, daily internet usage, Ad topic line, timestamp and whether a user clicked on the Ad all of which will be relevant in this project
+
+## We first call the data.table library to be able to work with tabular data
+
+```{r}
+library("data.table")
+
+advert_dataset <- fread('http://bit.ly/IPAdvertisingData')
+
+# First check have a look at the data set.
+
+head(advert_dataset)
+```
+
+## We then check for the total number of missing values in each of the coulmns in our dataset using the colSums function
+
+```{r}
+colSums(is.na(advert_dataset))
+```
+```{r}
+
+```
+
+## Checking total number of missing values in the dataframe
+
+```{r}
+sum(is.na(advert_dataset))
+```
+
+## Identifying the numeric class in the data and evaluating if there are any outliers
+
+```{r}
+str(advert_dataset)
+```
+## Checking for outlier values per each Categorical column
+
+```{r}
+boxplot.stats(advert_dataset$Age)$out
+boxplot.stats(advert_dataset$Male)$out
+boxplot.stats(advert_dataset$ 'Clicked on Ad')$out
+```
+##Boxplots for each categorical column
+
+```{r}
+boxplot(advert_dataset$Age, main="Age", boxwex=0.1)
+
+boxplot(advert_dataset$'Clicked on Ad', main="Clicked on Ad", boxwex=0.1)
+```
+
